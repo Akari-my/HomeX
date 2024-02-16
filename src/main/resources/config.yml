@@ -1,0 +1,23 @@
+#
+#    _    _                       __   __
+#   | |  | |                      \ \ / /
+#   | |__| | ___  _ __ ___   ___   \ V /
+#   |  __  |/ _ \| '_ ` _ \ / _ \   > <
+#   | |  | | (_) | | | | | |  __/  / . \
+#   |_|  |_|\___/|_| |_| |_|\___| /_/ \_\
+#
+#      This Plugin was made with ❤️ by Akari_my
+#      GitHub: github.com/Akari-my
+#      Discord for support: akari_my
+#
+#      version: 1.0-BETA
+
+
+messages:
+  success:
+    homeSet: "&aHome '%home%' set successfully!"
+    homeDeleted: "&aHome '%home%' successfully deleted!"
+    teleportedToHome: "&aTeleported to home '%home%'!"
+  error:
+    homeAlreadyExists: "&cThe home '%home%' already exists."
+    homeNotFound: "&cThe home '%home%' does not exist."

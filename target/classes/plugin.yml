@@ -1,0 +1,7 @@
+name: HomeX
+version: '1.0-BETA'
+main: net.akari.homex.HomeX
+api-version: '1.16'
+commands:
+  home:
+    description: Home Command
