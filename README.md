@@ -6,7 +6,7 @@ HomeX is a feature-rich Spigot plugin that introduces a Home in-game system
 - Implement 3 second Cooldown with no move system
 
 ## Commands :spades:
-Command | Description |
+Command | Description | Permession
 --- | --- | ---
 `/home setHome <name Home>` | Set the home
 `/home delHome <name Home>` | Delete Home
