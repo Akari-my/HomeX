@@ -2,8 +2,8 @@
 HomeX is a feature-rich Spigot plugin that introduces a Home in-game system
 
 ## Future updates :pencil2:
-- Adding subCommand list
-- Introducing Msql Database
+- Put MySQL Database to better manage the Player Home data
+- Make the Database Async
 
 ## Commands :spades:
 Command | Description | Permession
