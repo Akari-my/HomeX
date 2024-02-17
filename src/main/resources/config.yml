@@ -13,11 +13,18 @@
 #      version: 1.0-BETA
 
 
+settings:
+  cooldownSeconds: 3
+
+
 messages:
   success:
     homeSet: "&aHome '%home%' set successfully!"
     homeDeleted: "&aHome '%home%' successfully deleted!"
     teleportedToHome: "&aTeleported to home '%home%'!"
+    coolDown: "§aYou will be teleported between 3 seconds"
   error:
     homeAlreadyExists: "&cThe home '%home%' already exists."
     homeNotFound: "&cThe home '%home%' does not exist."
+    coolDownWait: "§cYou must wait before you can teleport again"
+    coolDownMove: "§cYou moved the teleporter and it was Cancelled"
