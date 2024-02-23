@@ -3,11 +3,14 @@ package net.akari.homex.utils;
 import net.akari.homex.HomeX;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Manager {
@@ -54,6 +57,26 @@ public class Manager {
             String errorMessage = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.error.homeNotFound").replace("%home%", homeName));
             player.sendMessage(errorMessage);
         }
+    }
+
+    public int getHomeCount(Player player) {
+        int count = 0;
+        if (homesConfig.contains("homes." + player.getUniqueId())) {
+            ConfigurationSection playerHomes = homesConfig.getConfigurationSection("homes." + player.getUniqueId());
+            if (playerHomes != null) {
+                count = playerHomes.getKeys(false).size();
+            }
+        }
+        return count;
+    }
+
+    public List<String> getHomes(Player player) {
+        List<String> homeList = new ArrayList<>();
+        ConfigurationSection playerHomes = homesConfig.getConfigurationSection("homes." + player.getUniqueId());
+        if (playerHomes != null) {
+            homeList.addAll(playerHomes.getKeys(false));
+        }
+        return homeList;
     }
 
     public static boolean homeExists(Player player, String homeName) {

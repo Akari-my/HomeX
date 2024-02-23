@@ -1,5 +1,5 @@
 name: HomeX
-version: '1.0-BETA'
+version: '1.5.1-BETA'
 main: net.akari.homex.HomeX
 api-version: '1.16'
 commands:

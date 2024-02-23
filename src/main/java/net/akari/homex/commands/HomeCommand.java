@@ -1,6 +1,7 @@
 package net.akari.homex.commands;
 
 import net.akari.homex.HomeX;
+import net.akari.homex.inventory.HomeInventory;
 import net.akari.homex.utils.CooldownManager;
 import net.akari.homex.utils.Manager;
 import org.bukkit.ChatColor;
@@ -56,15 +57,8 @@ public class HomeCommand implements CommandExecutor {
     }
 
     private void sendHelpMessage(Player player) {
-        player.sendMessage(ChatColor.RED + "==== " + ChatColor.GRAY + "HomeX " + ChatColor.RED + "====");
-        player.sendMessage("");
-        player.sendMessage(ChatColor.RED + "/home setHome <homeName>");
-        player.sendMessage(ChatColor.RED + "/home delHome <homeName>");
-        player.sendMessage(ChatColor.RED + "/home home <homeName>");
-        player.sendMessage("");
-        player.sendMessage(ChatColor.RED + "This Plugin was made with ❤ by Akari_my");
-        player.sendMessage("");
-        player.sendMessage(ChatColor.RED + "==== " + ChatColor.GRAY + "HomeX " + ChatColor.RED + "====");
+        HomeInventory inventory = new HomeInventory(this.plugin, manager);
+        inventory.openHomeInventory(player);
     }
 
     private void SetHome(Player player, String[] args) {
@@ -74,8 +68,16 @@ public class HomeCommand implements CommandExecutor {
         }
 
         String homeName = args[1];
-        if (!Manager.homeExists(player, homeName)) {
-            Manager.setHome(player, homeName);
+        int maxHomes = plugin.getConfig().getInt("settings.maxHomes");
+
+        if (manager.getHomeCount(player) >= maxHomes) {
+            String errorMessage = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.getConfig().getString("messages.error.maxHomesReached")));
+            player.sendMessage(errorMessage);
+            return;
+        }
+
+        if (!manager.homeExists(player, homeName)) {
+            manager.setHome(player, homeName);
             String successMessage = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.getConfig().getString("messages.success.homeSet")).replace("%home%", homeName));
             player.sendMessage(successMessage);
         } else {
@@ -116,9 +118,7 @@ public class HomeCommand implements CommandExecutor {
 
         if (Manager.homeExists(player, homeName)) {
             int cooldownSeconds = plugin.getConfig().getInt("settings.cooldownSeconds");
-            cooldownManager.startCooldown(player, cooldownSeconds, () -> {
-                cooldownManager.removeCooldown(player);
-                Manager.teleportToHome(player, homeName);
+            cooldownManager.startCooldown(player, cooldownSeconds, () -> {cooldownManager.removeCooldown(player);Manager.teleportToHome(player, homeName);
             });
         } else {
             String errorMessage = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.getConfig().getString("messages.error.homeNotFound")).replace("%home%", homeName));

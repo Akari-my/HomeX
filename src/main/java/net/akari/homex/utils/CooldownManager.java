@@ -36,6 +36,17 @@ public class CooldownManager {
         }.runTaskLater(plugin, seconds * 20L);
     }
 
+    public long getRemainingTime(Player player) {
+        if (cooldowns.containsKey(player)) {
+            long expiration = cooldowns.get(player);
+            long currentTime = System.currentTimeMillis();
+            if (currentTime < expiration) {
+                return (expiration - currentTime) / 1000L;
+            }
+        }
+        return 0;
+    }
+
     public void removeCooldown(Player player) {
         cooldowns.remove(player);
     }

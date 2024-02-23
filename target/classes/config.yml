@@ -10,7 +10,12 @@
 #      GitHub: github.com/Akari-my
 #      Discord for support: akari_my
 #
-#      version: 1.0-BETA
+#      version: 1.5.1-BETA
+
+
+settings:
+  cooldownSeconds: 3
+  maxHomes: 2
 
 
 messages:
@@ -18,6 +23,10 @@ messages:
     homeSet: "&aHome '%home%' set successfully!"
     homeDeleted: "&aHome '%home%' successfully deleted!"
     teleportedToHome: "&aTeleported to home '%home%'!"
+    coolDown: "§aYou will be teleported between 3 seconds"
   error:
     homeAlreadyExists: "&cThe home '%home%' already exists."
     homeNotFound: "&cThe home '%home%' does not exist."
+    coolDownWait: "§cYou must wait before you can teleport again"
+    coolDownMove: "§cYou moved the teleporter and it was Cancelled"
+    maxHomesReached: "§cYou can no longer create Home because you have exceeded the maximum limit"

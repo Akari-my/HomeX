@@ -1,6 +1,7 @@
 package net.akari.homex;
 
 import net.akari.homex.commands.HomeCommand;
+import net.akari.homex.inventory.HomeInventory;
 import net.akari.homex.utils.CooldownManager;
 import net.akari.homex.utils.Manager;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,6 +35,7 @@ public final class HomeX extends JavaPlugin {
         manager = new Manager(this, homesConfig, homesFile);
 
         Objects.requireNonNull(getCommand("home")).setExecutor(new HomeCommand(this, manager));
+        getServer().getPluginManager().registerEvents(new HomeInventory(this, manager), this);
 
         saveConfig();
     }
