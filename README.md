@@ -34,6 +34,7 @@ Command | Description | Permession
 
 settings:
   cooldownSeconds: 3
+  maxHomes: 2
 
 messages:
   success:
