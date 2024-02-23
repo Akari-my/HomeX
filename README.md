@@ -2,8 +2,8 @@
 HomeX is a feature-rich Spigot plugin that introduces a Home in-game system
 
 ## Future updates :pencil2:
-- Introducing Msql Database
-- Implement 3 second Cooldown with no move system
+- Put MySQL Database to better manage the Player Home data
+- Make the Database Async
 
 ## Commands :spades:
 Command | Description | Permession
@@ -17,7 +17,6 @@ Command | Description | Permession
   <summary>Click to open</summary>
 
 ```yaml
----
 #
 #    _    _                       __   __
 #   | |  | |                      \ \ / /
@@ -33,14 +32,20 @@ Command | Description | Permession
 #      version: 1.0-BETA
 
 
+settings:
+  cooldownSeconds: 3
+
 messages:
   success:
     homeSet: "&aHome '%home%' set successfully!"
     homeDeleted: "&aHome '%home%' successfully deleted!"
     teleportedToHome: "&aTeleported to home '%home%'!"
+    coolDown: "§aYou will be teleported between 3 seconds"
   error:
     homeAlreadyExists: "&cThe home '%home%' already exists."
     homeNotFound: "&cThe home '%home%' does not exist."
+    coolDownWait: "§cYou must wait before you can teleport again"
+    coolDownMove: "§cYou moved the teleporter and it was Cancelled"
 ```
 </details>
 
