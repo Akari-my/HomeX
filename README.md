@@ -29,11 +29,12 @@ Command | Description | Permession
 #      GitHub: github.com/Akari-my
 #      Discord for support: akari_my
 #
-#      version: 1.0-BETA
+#      version: 1.5.5-BETA
 
 
 settings:
   cooldownSeconds: 3
+  maxHomes: 2
 
 messages:
   success:
