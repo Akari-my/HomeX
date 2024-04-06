@@ -33,5 +33,5 @@ messages:
   error:
     homeAlreadyExists: "&cThe home '%home%' already exists."
     homeNotFound: "&cThe home '%home%' does not exist."
-    coolDownWait: "§cYou must wait before you can teleport again"
+    coolDownWait: "§cYou must wait before you can teleport again."
     maxHomesReached: "§cYou can no longer create Home because you have exceeded the maximum limit"
