@@ -4,7 +4,7 @@ import net.akari.homex.HomeX;
 import net.akari.homex.utils.CooldownManager;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
-import net.akari.homex.utils.Manager;
+import net.akari.homex.database.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -22,10 +22,10 @@ import java.util.Objects;
 public class HomeInventory implements Listener{
 
     private final HomeX plugin;
-    private final Manager manager;
+    private final DatabaseManager manager;
     private final CooldownManager cooldownManager;
 
-    public HomeInventory(HomeX plugin, Manager manager) {
+    public HomeInventory(HomeX plugin, DatabaseManager manager) {
         this.plugin = plugin;
         this.manager = manager;
         this.cooldownManager = new CooldownManager(plugin);
@@ -46,7 +46,7 @@ public class HomeInventory implements Listener{
 
     public void openTeleportHomesInventory(Player player) {
         List<String> homes = manager.getHomes(player);
-        int size = 9;
+        int size = 27;
         Inventory inventory = Bukkit.createInventory(null, size, "Teleport Homes");
 
         for (int i = 0; i < homes.size(); i++) {
@@ -117,7 +117,7 @@ public class HomeInventory implements Listener{
             if (clickedItem.getItemMeta() != null && clickedItem.getItemMeta().hasDisplayName()) {
                 String homeName = ChatColor.stripColor(clickedItem.getItemMeta().getDisplayName());
 
-                if (!Manager.homeExists(player, homeName)) {
+                if (!DatabaseManager.homeExists(player, homeName)) {
                     String errorMessage = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(plugin.getConfig().getString("messages.error.homeNotFound")).replace("%home%", homeName));
                     player.sendMessage(errorMessage);
                     return;
@@ -125,13 +125,13 @@ public class HomeInventory implements Listener{
 
                 if (cooldownManager.hasCooldown(player)) {
                     long remainingTime = cooldownManager.getRemainingTime(player);
-                    player.sendMessage("You have to wait longer " + remainingTime + " seconds before you can teleport.");
+                    player.sendMessage("§cYou will be teleported to your Home in " + remainingTime + "!!");
                     return;
                 }
 
-                int cooldownSeconds = 5;
+                int cooldownSeconds = plugin.getConfig().getInt("settings.cooldownSeconds");
                 cooldownManager.startCooldown(player, cooldownSeconds, () -> {
-                    Manager.teleportToHome(player, homeName);
+                    DatabaseManager.teleportToHome(player, homeName);
                 });
             }
         }

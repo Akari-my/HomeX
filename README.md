@@ -1,15 +1,11 @@
 # HomeX
 HomeX is a feature-rich Spigot plugin that introduces a Home in-game system
 
-## Future updates :pencil2:
-- Put MySQL Database to better manage the Player Home data
-- Make the Database Async
-
 ## Commands :spades:
 Command | Description | Permession
 --- | --- | ---
-`/home setHome <name Home>` | Set the home
-`/home delHome <name Home>` | Delete Home
+`/home set <name Home>` | Set the home
+`/home delete <name Home>` | Delete Home
 `/home home <name Home>` | teleport to home
 
 ## Config.yml
@@ -29,7 +25,7 @@ Command | Description | Permession
 #      GitHub: github.com/Akari-my
 #      Discord for support: akari_my
 #
-#      version: 1.5.5-BETA
+#      version: 1.0.0-RELEASE
 
 
 settings:

@@ -5,7 +5,7 @@ import net.akari.homex.commands.argumets.delHome;
 import net.akari.homex.commands.argumets.setHome;
 import net.akari.homex.commands.argumets.teleportHome;
 import net.akari.homex.inventory.HomeInventory;
-import net.akari.homex.utils.Manager;
+import net.akari.homex.database.DatabaseManager;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -19,12 +19,12 @@ import java.util.List;
 public class HomeCommand implements CommandExecutor {
 
     private final HomeX plugin;
-    private final Manager manager;
+    private final DatabaseManager manager;
     private final setHome setHome;
     private final delHome delHome;
     private final teleportHome teleportHome;
 
-    public HomeCommand(HomeX plugin, Manager manager) {
+    public HomeCommand(HomeX plugin, DatabaseManager manager) {
         this.plugin = plugin;
         this.manager = manager;
 
@@ -44,14 +44,6 @@ public class HomeCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        List<String> newArgs = new ArrayList<>();
-
-        for (int i = 0; i < args.length; i++) {
-            if (i == 0) {
-                continue;
-            }
-            newArgs.add(args[i]);
-        }
 
         if (args.length < 1) {
             sendHelpMessage(player);
@@ -59,15 +51,18 @@ public class HomeCommand implements CommandExecutor {
         }
 
         String subCommand = args[0];
+        String[] subCommandArgs = new String[args.length - 1];
 
-        if (subCommand.equalsIgnoreCase("setHome")) {
-            setHome.execute(sender, newArgs.toArray(new String[0]));
-        } else if (subCommand.equalsIgnoreCase("delHome")) {
-            delHome.execute(sender, newArgs.toArray(new String[0]));
+        System.arraycopy(args, 1, subCommandArgs, 0, args.length - 1);
+
+        if (subCommand.equalsIgnoreCase("set")) {
+            setHome.execute(sender, subCommandArgs);
+        } else if (subCommand.equalsIgnoreCase("delete")) {
+            delHome.execute(sender, subCommandArgs);
         } else if (subCommand.equalsIgnoreCase("home")) {
-            teleportHome.execute(sender, newArgs.toArray(new String[0]));
+            teleportHome.execute(sender, subCommandArgs);
         } else {
-            player.sendMessage(ChatColor.RED + "Unknown sub-command. Available sub-commands: setHome, delHome, home");
+            player.sendMessage(ChatColor.RED + "Unknown sub-command. Available sub-commands: set, delete, home");
         }
 
         return true;
