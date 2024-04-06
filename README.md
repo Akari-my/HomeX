@@ -28,11 +28,11 @@ Command | Description | Permession
 #      version: 1.0.0-RELEASE
 
 Database:
-  hostname: 127.0.0.1
-  port: 3306
-  database: homex
-  user: root
-  password: s-r@moy4Z8j4!A-t
+  hostname:
+  port:
+  database:
+  user:
+  password:
 
 settings:
   cooldownSeconds: 3
