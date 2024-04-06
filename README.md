@@ -27,10 +27,17 @@ Command | Description | Permession
 #
 #      version: 1.0.0-RELEASE
 
+Database:
+  hostname: 127.0.0.1
+  port: 3306
+  database: homex
+  user: root
+  password: s-r@moy4Z8j4!A-t
 
 settings:
   cooldownSeconds: 3
   maxHomes: 2
+
 
 messages:
   success:
@@ -42,7 +49,7 @@ messages:
     homeAlreadyExists: "&cThe home '%home%' already exists."
     homeNotFound: "&cThe home '%home%' does not exist."
     coolDownWait: "§cYou must wait before you can teleport again"
-    coolDownMove: "§cYou moved the teleporter and it was Cancelled"
+    maxHomesReached: "§cYou can no longer create Home because you have exceeded the maximum limit"
 ```
 </details>
 
