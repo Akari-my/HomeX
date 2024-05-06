@@ -13,11 +13,11 @@
 #      version: 1.0.0-RELEASE
 
 Database:
-  hostname: 127.0.0.1
-  port: 3306
-  database: homex
-  user: root
-  password: s-r@moy4Z8j4!A-t
+  hostname:
+  port:
+  database:
+  user:
+  password:
 
 settings:
   cooldownSeconds: 3
@@ -33,5 +33,5 @@ messages:
   error:
     homeAlreadyExists: "&cThe home '%home%' already exists."
     homeNotFound: "&cThe home '%home%' does not exist."
-    coolDownWait: "§cYou must wait before you can teleport again"
+    coolDownWait: "§cYou must wait before you can teleport again."
     maxHomesReached: "§cYou can no longer create Home because you have exceeded the maximum limit"
