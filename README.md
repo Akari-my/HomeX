@@ -1,3 +1,6 @@
+
+![minecraft_title](https://github.com/Akari-my/HomeX/assets/58370835/8c00ba98-b79f-4f6e-bdb5-1e0f18e262f1)
+
 # HomeX
 HomeX is a feature-rich Spigot plugin that introduces a Home in-game system
 
